@@ -17,6 +17,6 @@ class Index extends Controller
 {
     public function index()
     {
-        return 11111111;
+        return 'Hi';
     }
 }
