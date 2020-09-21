@@ -12,11 +12,21 @@
 namespace app\index\controller;
 
 use think\Controller;
+use CasbinAdapter\Think\Facades\Casbin;
 
 class Index extends Controller
 {
     public function index()
     {
-        return 'Hi Casbin';
+        var_dump(Casbin::removePolicy('alice', 'data1', 'read'));
+        echo "<hr/>";
+        var_dump(Casbin::enforce('alice', 'data1', 'read')); // false
+        var_dump(Casbin::enforce('alice', 'data2', 'read'));
+        var_dump(Casbin::enforce('alice', 'data2', 'write'));
+        echo "<hr/>";
+        var_dump(Casbin::enforce('bob', 'data1', 'read'));
+        var_dump(Casbin::enforce('bob', 'data2', 'write'));
+        echo "<hr/>";
+        var_dump(Casbin::enforce('bob', 'data2', 'read')); // false
     }
 }
