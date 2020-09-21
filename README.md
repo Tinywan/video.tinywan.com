@@ -15,7 +15,7 @@ docker run --rm --interactive --tty -v e:/dnmp/www/wiot.tinywan.com:/app compose
 
 ThinkPHP5.1 + Casbin权限实战：入门分享
 ThinkPHP5.1 + Casbin权限实战：RBAC + RESTful 权限控制
-## （2020-09-21）课程脚本.
+## （2020-09-21）课程脚本
 
 > 2、ThinkPHP5.1 + Casbin权限实战：身份验证和基于角色的RBAC授权
 
@@ -40,7 +40,7 @@ ThinkPHP5.1 + Casbin权限实战：RBAC + RESTful 权限控制
 [官方-RBAC模型编辑器](https://casbin.org/zh-CN/editor)
 
 #### Model 定义
-```javascript
+```php
 [request_definition]
 r = sub, obj, act
 
@@ -58,7 +58,7 @@ m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
 ```
 
 #### Policy 定义
-```javascript
+```php
 p, alice, data1, read
 p, bob, data2, write
 p, data2_admin, data2, read
@@ -71,38 +71,46 @@ g, alice, data2_admin
 > 3、用户 alice 继承 data2_admin 
 
 #### Request （请求验证权限）
-```javascript
+```php
 alice, data2, read
 ```
 
 ##### Enforcement Result （验证结果）
-```javascript
+```php
 true
 ```
 
 ### 6、代码实战
 
 1、添加策略
-```javascript
-$enforcer->addPermissionForUser('alice', 'data1', 'read');
-$enforcer->addPermissionForUser('bob', 'data2', 'write');
+```php
+Casbin::addPermissionForUser('alice', 'data1', 'read');
+Casbin::addPermissionForUser('bob', 'data2', 'write');
+
+// var_dump(Casbin::addPermissionForUser('alice', 'data1', 'read'));
+// var_dump(Casbin::addPermissionForUser('bob', 'data2', 'write'));
 ```
 
 2、给 data2_admin 角色分配权限
-```javascript
-$enforcer->addPermissionForUser('data2_admin', 'data2', 'read');
-$enforcer->addPermissionForUser('data2_admin', 'data2', 'write');
+```php
+Casbin::addPermissionForUser('data2_admin', 'data2', 'read');
+Casbin::addPermissionForUser('data2_admin', 'data2', 'write');
+
+// var_dump(Casbin::addPermissionForUser('data2_admin', 'data2', 'read'));
+// var_dump(Casbin::addPermissionForUser('data2_admin', 'data2', 'write'));
 ```
 
 3、给 alice 分配角色 data2_admin
-```javascript
-$enforcer->addRoleForUser('alice', 'data2_admin'); 
+```php
+Casbin::addRoleForUser('alice', 'data2_admin');
+
+// var_dump(Casbin::addRoleForUser('alice', 'data2_admin'));
 ```
 > alice 将会拥有的所有 data2_admin 权限
 
 4、分配完角色和权限后，数据库中的策略规则大致如下：（查看数据）
 
-```javascript
+```php
 p, alice, data1, read
 p, bob, data2, write
 p, data2_admin, data2, read
@@ -113,10 +121,25 @@ g, alice, data2_admin
 
 5、验证权限
 alice 具有data2_admin 角色，继承data2_admin角色的全部权限.
+```php
+Casbin::enforce('alice', 'data2', 'read');
+
+// var_dump(Casbin::enforce('alice', 'data2', 'read'));
 ```
-$enforcer->enforce('alice', '/foo', 'GET'); // true
-$enforcer->enforce('alice', '/foo', 'GET'); // true
-$enforcer->enforce('alice', '/foo', 'POST'); // true
-$enforcer->enforce('alice', '/foo/1', 'PUT'); // true
-$enforcer->enforce('alice', '/foo/1', 'DELETE'); // true
+
+RBAC 控制管理
+```php
+// 1、添加策略
+// var_dump(Casbin::addPermissionForUser('alice', 'data1', 'read'));
+// var_dump(Casbin::addPermissionForUser('bob', 'data2', 'write'));
+
+// 2、给 data2_admin 角色分配权限
+// var_dump(Casbin::addPermissionForUser('data2_admin', 'data2', 'read'));
+// var_dump(Casbin::addPermissionForUser('data2_admin', 'data2', 'write'));
+
+// 3、给 alice 分配角色 data2_admin
+// var_dump(Casbin::addRoleForUser('alice', 'data2_admin')); 
+
+// 4、严重权限
+// var_dump(Casbin::enforce('alice', 'data2', 'read'));
 ```
