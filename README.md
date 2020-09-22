@@ -15,4 +15,4 @@ docker run --rm --interactive --tty -v e:/dnmp/www/wiot.tinywan.com:/app compose
 
 * 1、ThinkPHP5.1 + Casbin权限实战：入门分享
 * [2、ThinkPHP5.1 + Casbin权限实战：RBAC + RESTful 权限控制](./RBAC.md)
-* [2、ThinkPHP5.1 + Casbin权限实战：RBAC + RESTful 权限控制](./REST_API_RBAC.md)
+* [2、ThinkPHP5.1 + Casbin权限实战：RESTful 权限控制](./REST_API_RBAC.md)
