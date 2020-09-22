@@ -8,8 +8,9 @@ RESTFUL是一种网络应用程序的设计风格和开发方式，基于HTTP，
 
 ### 2、RESTful Model
 [支持的Models](https://casbin.org/docs/zh-CN/supported-models)
+[支持的Models](https://github.com/casbin/casbin/blob/master/util/builtin_operators_test.go)
 （1）keymatch2 模型
-[keymatch2_model 参考](https://github.com/casbin/casbin/blob/master/examples/keymatch2_model.conf)
+[keymatch2_model 参考（有点旧啊，使用官方的Edit吧）](https://github.com/casbin/casbin/blob/master/examples/keymatch2_model.conf)
 ```
 [request_definition]
 r = sub, obj, act
