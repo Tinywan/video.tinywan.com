@@ -10,6 +10,8 @@
  * |  Desc: 描述信息
  * '------------------------------------------------------------------------------------------------------------------*/
 // 工具类
+
+use app\http\middleware\AuthMiddleware;
 use think\facade\Route;
 
 Route::group('api', function () {
@@ -19,9 +21,7 @@ Route::group('api', function () {
 		Route::get('', 'api/Project/getList');
 		// 添加
 		Route::post('', 'api/Project/add');
-		// 更新
-		Route::put(':id', 'api/Project/update');
 		// 删除
 		Route::delete(':id', 'api/Project/delete');
 	});
-});
+})->middleware(AuthMiddleware::class)->allowCrossDomain();
