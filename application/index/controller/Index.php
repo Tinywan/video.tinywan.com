@@ -35,13 +35,21 @@ class Index extends Controller
         // var_dump(Casbin::enforce('bob', 'data2', 'read')); // false
 
         //=====================
-        var_dump(Casbin::enforce('tinywan2', '/api/user', 'GET'));
-        echo "<hr/>";
-        var_dump(Casbin::enforce('tinywan2', '/api/user', 'POST'));
-        echo "<hr/>";
-        var_dump(Casbin::enforce('tinywan2', '/api/user', 'PUT'));
-        echo "<hr/>";
-        var_dump(Casbin::enforce('tinywan2', '/api/user', 'DELETE'));
+        // var_dump(Casbin::enforce('tinywan2', '/api/user', 'GET'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('tinywan2', '/api/user', 'POST'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('tinywan2', '/api/user', 'PUT'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('tinywan2', '/api/user', 'DELETE'));
+
+var_dump(Casbin::enforce('tinywan1', 'doamin1','/api/user', 'GET')); // true
+echo "<hr/>";
+var_dump(Casbin::enforce('tinywan1', 'doamin2','/api/user', 'POST')); // false
+echo "<hr/>";
+var_dump(Casbin::enforce('tinywan2', 'doamin1','/api/user', 'GET')); // false
+echo "<hr/>";
+var_dump(Casbin::enforce('tinywan2', 'doamin2','/api/user', 'POST')); // true
     }
 
     /**
