@@ -23,16 +23,25 @@ class Index extends Controller
      */
     public function index()
     {
-        var_dump(Casbin::removePolicy('alice', 'data1', 'read'));
+        // var_dump(Casbin::removePolicy('alice', 'data1', 'read'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('alice', 'data1', 'read')); // false
+        // var_dump(Casbin::enforce('alice', 'data2', 'read'));
+        // var_dump(Casbin::enforce('alice', 'data2', 'write'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('bob', 'data1', 'read'));
+        // var_dump(Casbin::enforce('bob', 'data2', 'write'));
+        // echo "<hr/>";
+        // var_dump(Casbin::enforce('bob', 'data2', 'read')); // false
+
+        //=====================
+        var_dump(Casbin::enforce('tinywan2', '/api/user', 'GET'));
         echo "<hr/>";
-        var_dump(Casbin::enforce('alice', 'data1', 'read')); // false
-        var_dump(Casbin::enforce('alice', 'data2', 'read'));
-        var_dump(Casbin::enforce('alice', 'data2', 'write'));
+        var_dump(Casbin::enforce('tinywan2', '/api/user', 'POST'));
         echo "<hr/>";
-        var_dump(Casbin::enforce('bob', 'data1', 'read'));
-        var_dump(Casbin::enforce('bob', 'data2', 'write'));
+        var_dump(Casbin::enforce('tinywan2', '/api/user', 'PUT'));
         echo "<hr/>";
-        var_dump(Casbin::enforce('bob', 'data2', 'read')); // false
+        var_dump(Casbin::enforce('tinywan2', '/api/user', 'DELETE'));
     }
 
     /**
@@ -55,5 +64,16 @@ class Index extends Controller
 
         // 4、验证权限 ，alice 继承 data2_admin 。data2_admin 又是有 data2 read
         var_dump(Casbin::enforce('alice', 'data1', 'read'));
+        $adminMap = ['admin1', 'admin2'];
+    }
+
+    function isSuperAdmin(array $adminMap, string $userName): bool
+    {
+        foreach ($adminMap as $admin) {
+            if ($admin == $userName) {
+                return true;
+            }
+        }
+        return false;
     }
 }

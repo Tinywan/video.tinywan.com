@@ -1,5 +1,5 @@
 
-### Composer 安装依赖库
+### 安装依赖库
 
 composer 
 ```
@@ -10,6 +10,16 @@ Docker 容器使用 composer
 ```
 docker run --rm --interactive --tty -v e:/dnmp/www/wiot.tinywan.com:/app composer install --ignore-platform-reqs
 ```
+## 数据填充
+
+```
+php think seed:run
+```
+> 生成casbin测试案例数据
+
+## 访问
+
+http://video.wiot.tinywan.cn:8007/
 
 ## Casbin 学习记录
 
