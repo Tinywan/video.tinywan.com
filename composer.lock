@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5813ebbe9cb910cb8f88a7e442984744",
+    "content-hash": "31346afb7a2a00d6bef787edb045f77c",
     "packages": [
         {
             "name": "casbin/casbin",
@@ -841,6 +841,49 @@
                 }
             ],
             "time": "2020-06-07T15:42:22+00:00"
+        },
+        {
+            "name": "tinywan/load-balancing",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tinywan/load-balancing.git",
+                "reference": "9bfc34284c86d7f09576a991232cd261cf832b75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tinywan/load-balancing/zipball/9bfc34284c86d7f09576a991232cd261cf832b75",
+                "reference": "9bfc34284c86d7f09576a991232cd261cf832b75",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Robin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tinywan",
+                    "email": "756684177@qq.com"
+                }
+            ],
+            "description": "This nginx load balancing for build composer packagist",
+            "homepage": "https://www.tinywan.com/",
+            "time": "2019-01-23T06:33:09+00:00"
         },
         {
             "name": "topthink/framework",
