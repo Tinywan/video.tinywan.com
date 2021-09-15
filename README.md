@@ -9,6 +9,7 @@ compsoer install
 Docker 容器使用 composer
 ```
 docker run --rm --interactive --tty -v e:/dnmp/www/wiot.tinywan.com:/app composer install --ignore-platform-reqs
+docker run --rm --interactive --tty -v e:/dnmp/www/video.tinywan.com:/app composer require topthink/think-swoole V2.0 --ignore-platform-reqs
 ```
 ## 数据填充
 
